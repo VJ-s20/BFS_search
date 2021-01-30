@@ -1,17 +1,20 @@
 # Maze Searching
-Using searching algorithms BFS and DFS for finding the path between start and end of the maze
+>Using searching algorithms BFS and DFS for finding the path between start and end of the maze  
+* Untraversed Maze  
 
->Untraversed Maze
-Maze1
-
+```
+Maze1  
 # # # # # O #      
-#       #   #        O is the Start of the maze
+#       #   #        O is the Start of the maze  
 #   #   #   #        X is the End of the maze
 #   #       #  
 #   # # #   #  
 #       # # #         
-# X # # # # #  
-Maze2
+# X # # # # # 
+
+
+
+* Maze2  
 
 # # # # # O # # #  
 #               #  
@@ -22,12 +25,13 @@ Maze2
 #   #   #   # # #    
 #               #  
 # # # # # # # X #    
+```
+* Solution Using Breadth first search(BFS):
 
- >Solution Using Breadth first search(BFS) to find the path between start and end
 
-
+```
 Maze 1
-Found: DDDLLDDLLD
+Path: DDDLLDDLLD
 
 #  #  #  #  #  O  #  
 #           #  +  #  
@@ -36,9 +40,9 @@ Found: DDDLLDDLLD
 #     #  +  #     #  
 #  +  +  +  #  #  #  
 #  +  #  #  #  #  # 
----
+
 Maze 2
-Found: DLDDRDDDDRRD      
+Path: DLDDRDDDDRRD      
 
 #  #  #  #  #  O  #  #  #  
 #           +  +        #  
@@ -50,14 +54,14 @@ Found: DLDDRDDDDRRD
 #              +  +  +  #  
 #  #  #  #  #  #  #  +  #  
 
+```
+
+* Solution Using Defth first search(DFS):
 
 
->Solution Using Defth first search(DFS) to find the path between start and end
-
-
-
+```
 Maze 1
-Found: DDDLLUULLDDDDD
+Path: DDDLLUULLDDDDD
 
 #  #  #  #  #  O  #  
 #  +  +  +  #  +  #  
@@ -66,9 +70,9 @@ Found: DDDLLUULLDDDDD
 #  +  #     #     #  
 #  +        #  #  #  
 #  +  #  #  #  #  #  
----
+
 Maze 2
-Found: DLLLLDDDDDDRRRRRRD
+Path: DLLLLDDDDDDRRRRRRD
 
 #  #  #  #  #  O  #  #  #  
 #  +  +  +  +  +        #
@@ -79,3 +83,4 @@ Found: DLLLLDDDDDDRRRRRRD
 #  +  #     #     #  #  #
 #  +  +  +  +  +  +  +  #
 #  #  #  #  #  #  #  +  #
+```
