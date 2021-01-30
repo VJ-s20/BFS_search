@@ -7,7 +7,7 @@ class Maze:
         maze.append(["#", " ", " ", " ", "#", " ", "#"])
         maze.append(["#", " ", "#", " ", "#", " ", "#"])
         maze.append(["#", " ", "#", " ", " ", " ", "#"])
-        maze.append(["#", " ", "#", "#", "#", "#", "#"])
+        maze.append(["#", " ", "#", "#", "#", " ", "#"])
         maze.append(["#", " ", " ", " ", "#", "#", "#"])
         maze.append(["#", "X", "#", "#", "#", "#", "#"])
 
@@ -18,7 +18,7 @@ class Maze:
         maze = []
         maze.append(["#", "#", "#", "#", "#", "O", "#", "#", "#"])
         maze.append(["#", " ", " ", " ", " ", " ", " ", " ", "#"])
-        maze.append(["#", " ", "#", "#", " ", "#", "#", " ", "#"])
+        maze.append(["#", " ", "#", "#", "#", "#", "#", " ", "#"])
         maze.append(["#", " ", "#", " ", " ", " ", "#", " ", "#"])
         maze.append(["#", " ", "#", " ", "#", " ", "#", " ", "#"])
         maze.append(["#", " ", "#", " ", "#", " ", "#", " ", "#"])
@@ -64,14 +64,16 @@ class Maze:
                 break
         i = start
         j = 0
-        # pos=set()  # To keep track of previous traversed pos
+        pos=set()  #* To keep track of previous traversed pos
         for move in moves:
             j,i=self.path(move,i,j)
-            if not (0 <= i < len(maze[0]) and 0 <= j < len(maze)): #and (j,i) not in pos:
+            if not (0 <= i < len(maze[0]) and 0 <= j < len(maze)):
+                return False
+            if (j,i) in pos:
                 return False
             elif maze[j][i] == "#":
                 return False
-            # pos.add((j,i))
+            pos.add((j,i))
         return True
 
     def findend(self,maze, moves):
@@ -86,11 +88,11 @@ class Maze:
         if maze[j][i] == "X":
             print("Found:", moves)
             self.printMaze(maze, moves)
-            exit()
             return True
         return False
 
-#**  Main Algorithms
+#**  Main Algorithm's
+#* BFS 
 def BFS(bfs):
     queue = [""]
     moves = ""
@@ -102,26 +104,34 @@ def BFS(bfs):
             if bfs.valid(maze, move):
                 queue.append(move)
 
-# ? Help me fix DFS Recursive call
+#* DFS using stack
+def dfs(traversal,moves):
+    stack=[moves]
+    maze=traversal.createMaze2()
+    while not (traversal.findend(maze,moves)):
+        moves=stack.pop()
+        for i in ["L", "R", "U", "D"]:
+            move=moves+i
+            if traversal.valid(maze,move):
+                stack.append(move)
+# * DFS Using Recursion
 def _dfs(traversal,maze,moves):
-    if not traversal.findend(maze,moves):
-        for i in ["U", "D", "L", "R"]:
+    if traversal.findend(maze,moves):
+        exit()
+    else:
+        for i in ["L", "R", "U", "D"]:
             move=moves+i
             if traversal.valid(maze,move) :  
-                _dfs(traversal,maze,move) #! Infinity recursion
+                _dfs(traversal,maze,move) #! Solved Infinity recursion 
 
-
-def dfs(traversal):
-    visited=set()
+def dfs_recursion(traversal):
     maze=traversal.createMaze2()
     return _dfs(traversal,maze,"")
 
+
 if __name__=="__main__":
-    traversal=Maze()
-    BFS(traversal)
-    # dfs(traversal)
+    search=Maze()
+    BFS(search)
+    dfs(search,"")
+    # dfs_recursion(search)
 
-
-
-
-# ‾
